@@ -1,0 +1,35 @@
+:root {
+    --color-light: #e2e2e2;
+    --color-dark: #363636;
+    --color-primary: #db6f3d;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    background-color: var(--color-primary);
+    font-family: Poppins, Arial;
+    color: var(--color-light);
+}
+
+h1 {
+    font-size: 3vw;
+}
+
+.button {
+    font-size: 1.5em;
+    /* border: solid 10px black;
+    border-radius: .3em; */
+}
+
+.button:hover {
+    color: var(--color-primary);
+}
+
+.button-box {
+    padding: 1vw;
+}
+
+.audioplayer {
+    padding: 20px;
+}
