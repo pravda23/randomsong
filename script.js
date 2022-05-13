@@ -1,87 +1,73 @@
 // HTML SELECTORS
 
+const app1 = document.querySelector('.app1')
 const button = document.querySelector('.button')
 const buttonBox = document.querySelector('.button-box')
 const audioPlayer = document.querySelector('.audioplayer')
 const randomPlayer = document.createElement('div')
 const randomPlayerSub = document.createElement('div')
-const mouseOverPlayer01 = document.querySelector('.mouseOverPlayer01')
-const mouseOverPlayer02 = document.querySelector('.mouseOverPlayer02')
-const mouseOverPlayer03 = document.querySelector('.mouseOverPlayer03')
 
-// DATABASE OF AUDIO FILES
+// get track data
 
-const tracks = [{
+fetch("https://johnbartmann.com/track/php.php").then(content => {
+    return content.json()
+}).then(data => {
 
-    id: "1",
-    title: "song 1",
-    path: "https://johnbartmann.com/track/abandoned-subway-sample.mp3"
-}, {
-    id: "2",
-    title: "song 1",
-    path: "https://johnbartmann.com/track/8-bit-kung-fu-sample.mp3"
-}, {
-    id: "3",
-    title: "song 1",
-    path: "https://johnbartmann.com/track/weird-science-sample.mp3"
-}]
+    // --------APP 1 MOUSEOVER AUDIO--------
 
-// MOUSEOVER AUDIO
+    // loop through array
 
-// mouseover01
-mouseOverPlayer01.addEventListener('mouseout', function(e) {
-    e.target.pause()
-})
+    let num = 3
+    for (let i = 0; i < num; i++) {
 
-mouseOverPlayer01.addEventListener('mouseover', function(e) {
-    e.target.play()
-})
+        // generate an HTML player for each item in array
 
-// mouseover02
-mouseOverPlayer02.addEventListener('mouseout', function(e) {
-    e.target.pause()
-})
+        const app1Player = document.createElement('div')
+        app1Player.classList.add('app1Player')
+        app1Player.classList.add('grid-item')
+        app1Player.innerHTML = `<audio  controls> <source src = \"https://johnbartmann.com/track/${data[i]}\" type = \"audio/ogg\" >`
+        app1.appendChild(app1Player)
+        console.log(app1Player)
 
-mouseOverPlayer02.addEventListener('mouseover', function(e) {
-    e.target.play()
-})
+        // mouseover
+        app1Player.addEventListener('mouseout', function(e) {
+            e.target.pause()
+        })
 
-// mouseover03
-mouseOverPlayer03.addEventListener('mouseout', function(e) {
-    e.target.pause()
-})
-
-mouseOverPlayer03.addEventListener('mouseover', function(e) {
-    e.target.play()
-})
-
-// RANDOM SONG GENERATOR
-
-// audio file path generated as html audio player on click
-
-buttonBox.addEventListener('click', function(e) {
-    let count = 0
-    let max = tracks.length
-    let min = 0
-    let random = (Math.floor(Math.random() * (max - min) + min))
-
-    if (count === 0) {
-
-        randomPlayer.id = 'container'
-        randomPlayer.innerHTML = `<audio controls> <source src = \"${tracks[random].path}\" type = \"audio/ogg\" >`
-
-        document.body.appendChild(randomPlayer)
-        console.log(randomPlayer.innerHTML)
-        count++
-    } else {
-        randomPlayer.id = 'container'
-        randomPlayerSub.innerHTML = `<audio controls> <source src = \"${tracks[random].path}\" type = \"audio/ogg\" >`
-
-        document.randomPlayer.replaceWith(randomPlayerSub)
-        console.log(randomPlayerSub.innerHTML)
-        count++
+        app1Player.addEventListener('mouseover', function(e) {
+            e.target.play()
+        })
     }
 
+    // // -------APP 2 RANDOM SONG GENERATOR---------
+
+    // html audio player with random file generated on click
 
 
-}, false)
+    buttonBox.addEventListener('click', function() {
+        let count = 0
+        let max = data.length
+        let min = 0
+        let random = (Math.floor(Math.random() * (max - min) + min))
+
+        if (count === 0) {
+
+            randomPlayer.id = 'container'
+            randomPlayer.innerHTML = `<audio controls> <source src = \"https://johnbartmann.com/track/${data[random]}\" type = \"audio/ogg\" >`
+
+            document.body.appendChild(randomPlayer)
+            console.log(randomPlayer.innerHTML)
+            count++
+        } else {
+            randomPlayer.id = 'container'
+            randomPlayerSub.innerHTML = `<audio controls> <source src = \"https://johnbartmann.com/track/${data[random]}\" type = \"audio/ogg\" >`
+
+            document.randomPlayer.replaceWith(randomPlayerSub)
+            console.log(randomPlayerSub.innerHTML)
+            count++
+            // console.log(data[random])
+        }
+
+    }, false)
+
+})
