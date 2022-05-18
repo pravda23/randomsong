@@ -1,45 +1,77 @@
 // HTML SELECTORS
 
-const app1 = document.querySelector('.app1')
+const mouseoverAudio = document.querySelector('.mouseover-audio')
 const button = document.querySelector('.button')
 const buttonBox = document.querySelector('.button-box')
 const audioPlayer = document.querySelector('.audioplayer')
+const customAudioPlayer = document.querySelector('.custom-audio-player')
+const randomSongSelector = document.querySelector('.random-song-selector')
 const randomPlayer = document.createElement('div')
 const randomPlayerSub = document.createElement('div')
+const playBtn = document.querySelector(".play-btn")
+const pauseBtn = document.querySelector(".pause-btn")
+const forwardBtn = document.querySelector(".forward-btn")
+const trackTitle = document.querySelector(".track-title")
 
 // get track data
 
 fetch("https://johnbartmann.com/track/php.php").then(content => {
+    // console.log(content.json())
     return content.json()
 }).then(data => {
+    // --------APP: MOUSEOVER AUDIO--------
 
-    // --------APP 1 MOUSEOVER AUDIO--------
 
     // loop through array
 
-    let num = 3
-    for (let i = 0; i < num; i++) {
+    let numOfTracks = 3
+    for (let i = 0; i < numOfTracks; i++) {
 
         // generate an HTML player for each item in array
 
-        const app1Player = document.createElement('div')
-        app1Player.classList.add('app1Player')
-        app1Player.classList.add('grid-item')
-        app1Player.innerHTML = `<audio  controls> <source src = \"https://johnbartmann.com/track/${data[i]}\" type = \"audio/ogg\" >`
-        app1.appendChild(app1Player)
-        console.log(app1Player)
+        const mouseoverAudioPlayer = document.createElement('div')
+        mouseoverAudioPlayer.classList.add('mouseoverAudioPlayer')
+        mouseoverAudioPlayer.innerHTML = `<audio  controls> <source src = \"https://johnbartmann.com/track/${data[i]}\" type = \"audio/ogg\" >`
+        mouseoverAudio.appendChild(mouseoverAudioPlayer)
+            // console.log(mouseoverAudioPlayer)
 
         // mouseover
-        app1Player.addEventListener('mouseout', function(e) {
+        mouseoverAudioPlayer.addEventListener('mouseout', function(e) {
             e.target.pause()
         })
 
-        app1Player.addEventListener('mouseover', function(e) {
+        mouseoverAudioPlayer.addEventListener('mouseover', function(e) {
             e.target.play()
         })
     }
 
-    // // -------APP 2 RANDOM SONG GENERATOR---------
+
+    // -------APP: CUSTOM AUDIO PLAYER--------- 
+
+    // retrieve track titles and convert to initial caps
+
+    for (let i = 0; i < data.length; i++) {
+        let trackName = data[i]
+            // console.log(data[i].split('-').length)
+            // console.log(word[0])
+            // for (let j = 0; j < data[i].split('-').length; j++) {
+        let words = data[i].split('-')
+            // console.log(words)
+            // words.forEach(e => {
+            // console.log(e.charAt(0).toUpperCase())
+            // })
+            // console.log(e)
+
+
+
+
+        // console.log(words[0] + " " + words[1])
+        // let trackTitleCaps = word[j].charAt(0).toUpperCase() + word[j].slice(1)
+
+        // console.log(trackTitleCaps)
+        // }
+    }
+    // -------APP: RANDOM SONG SELECTOR--------- 
 
     // html audio player with random file generated on click
 
@@ -55,7 +87,8 @@ fetch("https://johnbartmann.com/track/php.php").then(content => {
             randomPlayer.id = 'container'
             randomPlayer.innerHTML = `<audio controls> <source src = \"https://johnbartmann.com/track/${data[random]}\" type = \"audio/ogg\" >`
 
-            document.body.appendChild(randomPlayer)
+            // console.log(document.body.randomPlayerDiv)
+            randomSongSelector.appendChild(randomPlayer)
             console.log(randomPlayer.innerHTML)
             count++
         } else {

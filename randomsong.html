@@ -8,27 +8,43 @@
     <title>Browser audio experiments</title>
 
     <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet' />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer"
+    />
     <link rel="stylesheet" type="text/css" href="style.css">
 
 </head>
 
 <body>
 
-    <!-- APP 1 MOUSEOVER AUDIO -->
-    <h1>App 1 test: mouseover audio</h1>
-    <section class="app1 grid-container">
+    <div class="main-container">
 
-    </section>
-
-    <!-- APP 2 RANDOM SONG GENERATOR -->
-    <section class="two">
-        <h1>App 2: click button to generate a random song</h1>
-        <div class="button-box"><button class="button">play</button></div>
-        <div class="audioplayer"></div>
-    </section>
+        <!-- APP: MOUSEOVER AUDIO -->
+        <div class="app-container">
+            <h1>App: mouseover audio</h1>
+            <div class="mouseover-audio">
+            </div>
+        </div>
 
 
-    <script type="text/javascript" src="script.js"></script>
+        <!-- APP: CUSTOM AUDIO PLAYER -->
+        <div class="app-container custom-audio-player">
+            <h1>App: custom audio player</h1>
+            <div class="progress-bar"></div>
+            <div class="track-title">Placeholder</div>
+            <i class="fa-solid fa-play" id="play-btn"></i>
+            <i class="fa-solid fa-pause" id="pause-btn"></i>
+            <i class="fa-solid fa-forward" id="forward-btn"></i>
+        </div>
+        <!-- APP: RANDOM SONG SELECTOR -->
+        <div class="app-container random-song-selector">
+            <h1>App: click button to select a random song</h1>
+            <div class="button-box"><button class="button">play</button></div>
+            <div class="audioplayer"></div>
+        </div>
+
+
+        <script type="text/javascript" src="script.js"></script>
+    </div>
 </body>
 
 </html>

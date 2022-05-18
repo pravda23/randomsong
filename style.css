@@ -1,7 +1,7 @@
 :root {
     --color-light: #e2e2e2;
     --color-dark: #363636;
-    --color-primary: #db6f3d;
+    --color-primary: #a9e0ff;
 }
 
 body {
@@ -30,6 +30,21 @@ h1 {
     padding: 1vw;
 }
 
-.audioplayer {
+.custom-audio-player {
     padding: 20px;
+}
+
+.app-container {
+    margin: 10px;
+    background-color: var(--color-dark);
+    padding: 20px;
+    border-radius: 10px;
+}
+
+
+/* APP: custom audio player */
+
+.fa-regular,
+.fa-play {
+    color: var(--color-light)
 }
