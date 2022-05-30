@@ -1,14 +1,15 @@
 :root {
     --color-light: #e2e2e2;
-    --color-dark: #363636;
+    --color-dark: #3d3d3d;
     --color-primary: #a9e0ff;
 }
 
 body {
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    font-family: 'Poppins', 'Arial';
     background-color: var(--color-primary);
-    font-family: Poppins, Arial;
     color: var(--color-light);
 }
 
@@ -18,12 +19,6 @@ h1 {
 
 .button {
     font-size: 1.5em;
-    /* border: solid 10px black;
-    border-radius: .3em; */
-}
-
-.button:hover {
-    color: var(--color-primary);
 }
 
 .button-box {

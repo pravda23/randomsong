@@ -3,28 +3,33 @@ fetch("https://johnbartmann.com/track/php.php").then(content => {
 }).then(data => {
 
     // --------APP: MOUSEOVER AUDIO--------
-    // --------DISPLAYS SELECTED NUMBER OF TRACKS WHICH ONLY PLAY ON MOUSEOVER--------
+    // --------DISPLAYS SELECTED NUMBER OF TRACKS WHICH AUTOPLAY ON MOUSEOVER--------
 
     const mouseoverAudio = document.querySelector('.mouseover-audio')
-        // constNumOfTracks = document.querySelector('.num-of-tracks')
 
     let numOfTracks = 3
     for (let i = 0; i < numOfTracks; i++) {
 
         // retrieves specified number of tracks and generates an HTML player for each one
+
         const mouseoverAudioPlayer = document.createElement('div')
         mouseoverAudioPlayer.classList.add('mouseoverAudioPlayer')
-        mouseoverAudioPlayer.innerHTML = `<audio  controls> <source src = \"https://johnbartmann.com/track/${data[i]}\" type = \"audio/ogg\" >`
+        mouseoverAudioPlayer.innerHTML = `<audio class='mouseoverAudioPlayer' controls> <source src = \"https://johnbartmann.com/track/${data[i]}\" type = \"audio/ogg\" >`
         mouseoverAudio.appendChild(mouseoverAudioPlayer)
-
-        // mouseover starts playback
-        mouseoverAudioPlayer.addEventListener('mouseout', function(e) {
-            e.target.pause()
-        })
 
         // mouseout ends playback
         mouseoverAudioPlayer.addEventListener('mouseover', function(e) {
-            e.target.play()
+            if (e.target.matches('audio')) {
+                e.target.play()
+            }
+        })
+
+        // mouseover starts playback
+        mouseoverAudioPlayer.addEventListener('mouseout', function(e) {
+
+            if (e.target.matches('audio')) {
+                e.target.pause()
+            }
         })
     }
 
@@ -90,7 +95,6 @@ fetch("https://johnbartmann.com/track/php.php").then(content => {
         const playBtn = document.querySelector(".play-btn")
         const pauseBtn = document.querySelector(".pause-btn")
         const forwardBtn = document.querySelector(".forward-btn")
-
 
     }, false)
 
